@@ -33,29 +33,39 @@ def say_hello():
 def greet_person():
     """Greet user with compliment."""
 
-
-
     player = request.args.get("person")
-
-
 
     compliment = choice(AWESOMENESS)
 
     return render_template("compliment.html",
                            person=player,
                            compliment=compliment)
+                             
 
 @app.route('/game')
 def show_madlib_form():
     """ """
     answer = request.args.get("yesno")
-    if value == 'yes':
-        template = "game.html"
+
+    if answer == 'yes':
         return render_template("game.html")
     else:
         return render_template("goodbye.html")
 
-    
+
+@app.route('/madlibs')
+def show_madlib():
+    person = request.args.get("person")
+    noun = request.args.get("noun")
+    color = request.args.get("color")
+    adjective = request.args.get("adjective")
+
+    return render_template("madlibs.html",
+                           person=person,
+                           noun=noun,
+                           color=color,
+                           adjective=adjective)
+
 
 if __name__ == '__main__':
     # Setting debug=True gives us error messages in the browser and also
